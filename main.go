@@ -20,6 +20,9 @@ const html = `
 <h3>UwUify<h3>
 	<strong>https://uwuify.helba.ai/?uwu=<code>Your text here</code><strong>
 	<br />
+	<h4 style="margin-bototm: 1px">Nightbot</h4>
+	<code>!commands add !uwu $(urlfetch json https://uwuify.helba.ai/?uwu=$(querystring));</code>
+	<br/>
 	<h4 syle="margin-bottom: 1px">Try it out</h4>
 	<input id="myInput" placeholder="Uwuify input">
 	<button id="myBtn" onclick="uwuify()">Uwuify</button>
