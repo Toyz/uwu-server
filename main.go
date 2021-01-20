@@ -3,6 +3,8 @@ package main
 import (
 	"net/http"
 	"uwu/uwu"
+
+	strip "github.com/grokify/html-strip-tags-go" // => strip
 )
 
 const html = `
@@ -18,6 +20,27 @@ const html = `
 <h3>UwUify<h3>
 	<strong>https://uwuify.helba.ai/?uwu=<code>Your text here</code><strong>
 	<br />
+	<h4 syle="margin-bottom: 1px">Try it out</h4>
+	<input id="myInput" placeholder="Uwuify input">
+	<button id="myBtn" onclick="uwuify()">Uwuify</button>
+	<div id="result"></div>
+
+	<script>
+	var input = document.getElementById("myInput");
+	input.addEventListener("keyup", function(event) {
+	if (event.keyCode === 13) {
+		uwuify();
+	}
+	});
+
+	function uwuify() {
+		fetch("/?uwu=" + input.value).then(function(response) {
+			return response.text().then(function(text) {
+				document.getElementById("result").innerHTML=text;
+			});
+		  });
+	}
+	</script>
 	<br />
 	<a href="https://github.com/Toyz/uwu-server" target="_blank">Source code on Github</a>
 </body>
@@ -42,5 +65,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	key := keys[0]
 
+	if len(key) > 256 {
+		w.Write([]byte("'uwu' max legnth is 256 character"))
+		return
+	}
+
+	key = strip.StripTags(key)
 	w.Write([]byte(uwu.UwUify([]rune(key))))
 }
