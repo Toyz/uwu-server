@@ -7,7 +7,7 @@
 ```
 
 ### Site usage
-`> yourdomain.com:8080/?uwu=your text here`
+`> https://uwuify.helba.ai/?uwu=your text here`
 
 ### Nightbot usage
 ```
