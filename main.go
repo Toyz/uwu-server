@@ -77,7 +77,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	setupResponse(&w, r)
 
 	if len(key) > 256 {
-		w.Write([]byte("'uwu' max legnth is 256 character"))
+		w.Write([]byte("'uwu' max legnth is 256 characters"))
 		return
 	}
 
